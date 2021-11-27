@@ -26,7 +26,7 @@ from sqlalchemy import and_
 router = APIRouter()
 
 
-LOGGER = logging.getLogger(name="model_ui")
+LOGGER = logging.getLogger(name="users")
 
 
 @router.post(

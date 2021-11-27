@@ -1,6 +1,5 @@
 venv
 .idea
-.env
 tests/.pytest_cache
 .pytest_cache
 .coverage

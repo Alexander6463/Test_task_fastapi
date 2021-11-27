@@ -8,7 +8,7 @@ class User(BaseModel):
     first_name: str = Field(example="Alexander")
     last_name: str = Field(example="Ivanov")
     patronymic: Optional[str] = Field(example="Pavlovich")
-    email: Optional[str] = Field(example="example@mail.com")
+    email: Optional[str] = Field(example="example@mail.ru")
     password: str = Field(example="mypassword1")
 
     @validator("password")

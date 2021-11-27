@@ -9,9 +9,9 @@ app = FastAPI()
 app.include_router(router)
 
 if __name__ == "__main__":
-    logger = configure_logging("log_file.log")
+    logger = configure_logging(os.environ.get("LOG_FILE_PATH"))
     uvicorn.run(
         "main:app",
-        host=os.environ.get("HOST"),
-        port=os.environ.get("PORT"),
+        host=os.environ.get("APP_HOST"),
+        port=int(os.environ.get("APP_PORT")),
     )
