@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+sqlalchemy = "*"
+alembic = "*"
+pydantic = "*"
+psycopg2 = "*"
+passlib = "*"
+py3-validate-email = "*"
+uvicorn = "*"
+requests = "*"
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+
+[requires]
+python_version = "3.8"
