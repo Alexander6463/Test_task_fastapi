@@ -32,3 +32,8 @@
 4. Получение настроек через переменные окружения. 
  
 Наличие юнит-тестов на pytest или unittest будет плюсом. 
+
+
+Running
+1. Use 'make build' for running app
+2. Use 'make test' for running tests

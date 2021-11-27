@@ -1,0 +1,9 @@
+dockerfile
+docker-compose.yaml
+Makefile
+.coverage
+.pytest_cache
+venv
+tests/.pytest_cache
+.gitignore
+readme.md
