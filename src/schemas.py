@@ -13,7 +13,6 @@ class User(BaseModel):
 
     @validator("password")
     def validate_password(cls, password):
-        print(password)
         if (
             not password.isalnum()
             or password.isalpha()
