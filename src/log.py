@@ -4,8 +4,8 @@ from typing import Union
 
 
 def configure_logging(log_file: Union[str, Path]):
-    """Configuring logger
-    :return: instance of logger"""
+    """Configuring logger"""
+
     logging_format = "[%(asctime)s] - [%(name)s] - [%(levelname)s] - [%(message)s]"
     formatter = logging.Formatter(logging_format)
     console_handler = logging.StreamHandler()
