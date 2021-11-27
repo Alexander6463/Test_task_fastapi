@@ -36,7 +36,12 @@ class UserFind(BaseModel):
 
     @validator("field")
     def validate_field_value(cls, field):
-        if field not in {"first_name", "last_name", "patronymic", "email"}:
+        if field not in {
+            "first_name",
+            "last_name",
+            "patronymic",
+            "email",
+        }:
             return False
         return field
 

@@ -43,9 +43,18 @@ LOGGER = logging.getLogger(name="model_ui")
     },
 )
 def create_user(request: User, session: Session = Depends(get_db)):
-    if session.query(models.User).filter(models.User.email == request.email).all():
-        LOGGER.info("Create user get already existing user email %s", request.email)
-        raise HTTPException(status_code=404, detail="email must be unique value")
+    if (
+        session.query(models.User)
+        .filter(models.User.email == request.email)
+        .all()
+    ):
+        LOGGER.info(
+            "Create user get already existing user email %s",
+            request.email,
+        )
+        raise HTTPException(
+            status_code=404, detail="email must be unique value"
+        )
     LOGGER.info("Creating new user")
     new_user = models.User(
         first_name=request.first_name,
@@ -81,15 +90,23 @@ def update_user(request: UserUpdate, session: Session = Depends(get_db)):
     user = session.query(models.User).get(request.id)
     if not user:
         LOGGER.info("User with such id %s is not exist", request.id)
-        raise HTTPException(status_code=404, detail="User with such id is not exist")
+        raise HTTPException(
+            status_code=404, detail="User with such id is not exist"
+        )
     if (
         session.query(models.User)
-        .filter(and_(models.User.email == request.email, models.User.id != request.id))
+        .filter(
+            and_(
+                models.User.email == request.email,
+                models.User.id != request.id,
+            )
+        )
         .all()
     ):
         LOGGER.info("User with such email %s already exist", request.email)
         raise HTTPException(
-            status_code=409, detail="User with such email already exist"
+            status_code=409,
+            detail="User with such email already exist",
         )
     LOGGER.info("Update user with id %s", request.id)
     user.first_name = request.first_name
@@ -118,7 +135,9 @@ def delete_user(request: UserId, session: Session = Depends(get_db)):
     user = session.query(models.User).get(request.id)
     if not user:
         LOGGER.info("User with such id %s is not exist", request.id)
-        raise HTTPException(status_code=404, detail="User with such id is not exist")
+        raise HTTPException(
+            status_code=404, detail="User with such id is not exist"
+        )
     session.delete(user)
     session.commit()
     LOGGER.info("User with id %s was deleted", request.id)
@@ -140,7 +159,9 @@ def delete_user(request: UserId, session: Session = Depends(get_db)):
 )
 def get_users(user_id: int, session: Session = Depends(get_db)):
     try:
-        user = session.query(models.User).filter(models.User.id == user_id).one()
+        user = (
+            session.query(models.User).filter(models.User.id == user_id).one()
+        )
     except NoResultFound:
         LOGGER.error("Get user by id get not existing id %s", user_id)
         raise HTTPException(status_code=404, detail="Not existing user id")
@@ -182,7 +203,9 @@ def get_users(session: Session = Depends(get_db)):
         },
     },
 )
-def get_users_filter(request: UserFind = Depends(), session: Session = Depends(get_db)):
+def get_users_filter(
+    request: UserFind = Depends(), session: Session = Depends(get_db)
+):
     if not request.field:
         raise HTTPException(status_code=404, detail="Enter correct field")
     if request.field == "first_name":
@@ -199,8 +222,12 @@ def get_users_filter(request: UserFind = Depends(), session: Session = Depends(g
         )
     elif request.field == "email":
         return (
-            session.query(models.User).filter(models.User.email == request.value).all()
+            session.query(models.User)
+            .filter(models.User.email == request.value)
+            .all()
         )
     return (
-        session.query(models.User).filter(models.User.patronymic == request.value).all()
+        session.query(models.User)
+        .filter(models.User.patronymic == request.value)
+        .all()
     )
