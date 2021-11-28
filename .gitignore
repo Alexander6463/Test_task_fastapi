@@ -3,4 +3,4 @@ venv
 tests/.pytest_cache
 .pytest_cache
 .coverage
-*__pycache__
+*__pycache__/
